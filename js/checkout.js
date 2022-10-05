@@ -100,8 +100,5 @@ placeOrder.onclick = e => {
                     window.location.href="./product.html"
                 })
         })
-
-
-
 }
 
