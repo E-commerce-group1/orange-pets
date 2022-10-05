@@ -95,10 +95,13 @@ placeOrder.onclick = e => {
             Swal.fire(
                 'Paid Done',
                 '',
-                'success'
-            )
+                'success',
+                ).then((result) => {
+                    window.location.href="./product.html"
+                })
         })
 
 
 
 }
+
