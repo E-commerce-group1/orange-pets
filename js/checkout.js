@@ -93,7 +93,7 @@ placeOrder.onclick = e => {
         .then((res) => {
             console.log(res);
             Swal.fire(
-                'Paid Done',
+                'Order Received',
                 '',
                 'success',
                 ).then((result) => {
