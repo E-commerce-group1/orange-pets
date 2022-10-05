@@ -294,7 +294,7 @@
           <div class="bg-light rounded h-100 p-4">
             <h6 class="mb-4">Add Discount</h6>
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="productName" name="productName" placeholder="product name" />
+              <input type="text" class="form-control" id="couponName" name="productName" placeholder="product name" />
               <label for="floatingInput">Name</label>
             </div>
             <div class="form-floating mb-3">
@@ -303,21 +303,12 @@
               <label for="floatingInput">Discount percent </label>
             </div>
             <div class="form-floating mb-3">
-              <!-- <input
-                      type="text"
-                      class="form-control"
-                      id="availableDiscount"
-                      name="availableDiscount"
-                      placeholder="Available"
-                    /> -->
-              <!-- <label for="floatingInput">active</label> -->
-              <select name="cars" id="cars">
-
-                <option>avaliable</option>
-                <option>notavaliable</option>
+              <select name="cars" id="availableCoupon">
+                <option value="1">Available</option>
+                <option value="0">Not available</option>
               </select>
               <br><br>
-              <button type="button" class="btn btn-outline-warning m-2">Add Discount</button>
+              <button type="button" id="addDiscount" class="btn btn-outline-warning m-2">Add Discount</button>
 
 
             </div>

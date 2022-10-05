@@ -119,11 +119,11 @@ class Database
         }
     }
 
-    public function insertIntoDiscountTable(string $name, float $discountPercent, bool $active)
+    public function insertIntoDiscountTable(string $name, int $discountPercent, $active)
     {
     
         try {
-            $sql = "INSERT INTO order_items (name, discount_percent	, active)
+            $sql = "INSERT INTO discount(name, discount_percent	, active)
         VALUES ('$name', $discountPercent, $active)";
             $this->conn->exec($sql);
             return true;

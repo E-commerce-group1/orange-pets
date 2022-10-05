@@ -32,7 +32,7 @@ fetch("http://localhost/orange-pets/php/controller/getUserAddress.php", {
         postal.textContent += res.postal_code
     });
 
-fetch("http://localhost/orange-pets/php/controller/getUserOrder.php", {
+fetch("http://localhost/orange-pets/php/controller/getAllOrderById.php", {
     method: "POST",
     headers: {
         "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
@@ -44,66 +44,39 @@ fetch("http://localhost/orange-pets/php/controller/getUserOrder.php", {
         //   console.log(res);
 
         res.forEach(element => {
-            getProduct(element.id);
+             recentOrder(element);
         });
 
     });
 
 
 
-function getProduct(productId) {
-    fetch("http://localhost/orange-pets/php/controller/getProductById.php", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-        }, body: `id=${productId}`,
-    })
-        .then((response) => response.json())
-        .then((res) => {
-            console.log(res);
-            recentOrder(res);
-        });
-}
 
 
 let tableRoot = document.getElementById('tableRoot');
-function recentOrder(product) {
+function recentOrder(order) {
     let tr = document.createElement('tr');
-    tr.className = 'table_row';
+   
     tableRoot.append(tr);
 
-    let td = document.createElement('td');
-    td.className = 'column-1';
-    tr.append(td);
-
-    let div = document.createElement('div');
-    div.className = 'how-itemcart1';
-    td.append(div);
-
-    let img = document.createElement('img');
-    img.src=`/orange-pets/ProductImage/${product.image}`;
-    div.append(img);
+  
+;
 
     let tdName = document.createElement('td');
-    tdName.className = 'column-2 text-center';
-    tdName.textContent = product.name;
+    tdName.className = 'column-1 text-center';
+    tdName.textContent = order.total +" $";
     tr.append(tdName); 
 
     let tdOrderDate = document.createElement('td');
-    tdOrderDate.className = 'column-3 text-center';
-    tdOrderDate.textContent = product.created_at;
+    tdOrderDate.className = 'column-2 text-center';
+    tdOrderDate.textContent = order.created_at;
     tr.append(tdOrderDate); 
     
     let tdCATEGORY = document.createElement('td');
-    tdCATEGORY.className = 'column-4 text-center';
-    tdCATEGORY.textContent = product.category;
+    tdCATEGORY.className = 'column-3 text-center';
+    tdCATEGORY.textContent = order.status;
     tr.append(tdCATEGORY); 
 
-
-    let tdPrice = document.createElement('td');
-    tdPrice.className = 'column-5 text-center';
-    tdPrice.textContent = '$'+Number(product.price);
-    tr.append(tdPrice);
 }
 
 

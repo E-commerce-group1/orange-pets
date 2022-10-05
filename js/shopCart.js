@@ -203,12 +203,11 @@ proceedToCheckout.onclick = e => {
                 .then((response) => response.text())
                 .then((res) => {
                     console.log(res);
-
+                    window.location.href = '/orange-pets/checkout.html';
                 });
         })
 
 
 
-    window.location.href = '/orange-pets/checkout.html';
 
 }

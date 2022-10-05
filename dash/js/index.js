@@ -264,7 +264,7 @@ function updateBtn() {
 
 
 let allRecentSales = document.getElementById('AllRecentSales');
-function generateAllOrders(order,name) {
+function generateAllOrders(order, name) {
 
     let tr = document.createElement('tr');
     tr.setAttribute('id', `order${order.id}`)
@@ -310,10 +310,32 @@ fetch("http://localhost/orange-pets/php/controller/getAllorders.php", {
                 .then((res) => {
                     // console.log(res);
                     console.log(res);
-                    generateAllOrders(order,res.first_name+" "+res.last_name);
+                    generateAllOrders(order, res.first_name + " " + res.last_name);
                 });
         });
     })
 
 
+let addDiscount = document.getElementById('addDiscount');
+
+addDiscount.onclick = e => {
+    let discountPercent = document.getElementById('DiscountPercent');
+    let couponName = document.getElementById('couponName');
+    let availableCoupon = document.getElementById('availableCoupon');
+
+    fetch("http://localhost/orange-pets/php/controller/addCoupon.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        }, body: `name=${couponName.value}&discountPercent=${discountPercent.value}&active=${availableCoupon.value}`
+    })
+        .then((response) => response.json())
+        .then((res) => {
+            console.log(res);
+            if (res == true) {
+
+            }
+        })
+
+}
 
