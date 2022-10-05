@@ -207,7 +207,7 @@ function deleteP(id) {
         })
     productRow.remove();
 }
-let idA=0;
+let idA = 0;
 function updateP(id) {
     fetch("http://localhost/orange-pets/php/controller/getProductById.php", {
         method: "POST",
@@ -228,10 +228,10 @@ function updateP(id) {
             editCategory.value = res.category;
             editPrice.value = res.price;
             editQuantity.value = res.quantity;
-            idA=res.id;
+            idA = res.id;
         })
 
-        
+
 }
 
 
@@ -261,3 +261,59 @@ function updateBtn() {
             window.location.href = '/orange-pets/dash/'
         })
 }
+
+
+let allRecentSales = document.getElementById('AllRecentSales');
+function generateAllOrders(order,name) {
+
+    let tr = document.createElement('tr');
+    tr.setAttribute('id', `order${order.id}`)
+    allRecentSales.append(tr);
+
+    let tdEmail = document.createElement('td');
+    tdEmail.textContent = order.created_at;
+    tr.append(tdEmail);
+
+    let tdLastName = document.createElement('td');
+    tdLastName.textContent = name;
+    tr.append(tdLastName);
+
+    let tdCreateAt = document.createElement('td');
+    tdCreateAt.textContent = order.total;
+    tr.append(tdCreateAt);
+
+
+    let tdRole = document.createElement('td');
+    tdRole.textContent = order.status;
+    tr.append(tdRole);
+
+}
+
+
+fetch("http://localhost/orange-pets/php/controller/getAllorders.php", {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+    }
+})
+    .then((response) => response.json())
+    .then((res) => {
+        console.log(res);
+        res.forEach(order => {
+            fetch("http://localhost/orange-pets/php/controller/getUserByID.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                }, body: `id=${order.user_id}`,
+            })
+                .then((response) => response.json())
+                .then((res) => {
+                    // console.log(res);
+                    console.log(res);
+                    generateAllOrders(order,res.first_name+" "+res.last_name);
+                });
+        });
+    })
+
+
+
