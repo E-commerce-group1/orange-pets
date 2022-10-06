@@ -343,8 +343,9 @@ let loginLink = document.getElementById('loginLink');
 
 let logout = document.getElementById('logout');
 if (sessionStorage.getItem('user')) {
-  loginLink.style.display = 'none'
-  logout.style.display = ''
+loginLink.textContent = "My Account"
+loginLink.href = "./profile.html"
+
 }
 
 logout.onclick = e =>{

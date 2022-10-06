@@ -339,3 +339,48 @@ addDiscount.onclick = e => {
 
 }
 
+
+let allCoupon = document.getElementById('AllCoupon');
+function generateAllCoupon(coupon) {
+
+    let tr = document.createElement('tr');
+    tr.setAttribute('id', `order${coupon.id}`)
+    allCoupon.append(tr);
+
+    let tdEmail = document.createElement('td');
+    tdEmail.textContent = coupon.name;
+    tr.append(tdEmail);
+
+
+
+    let tdCreateAt = document.createElement('td');
+    tdCreateAt.textContent = coupon.discount_percent;
+    tr.append(tdCreateAt);
+
+
+    let tdRole = document.createElement('td');
+    if (coupon.active == 1) {
+
+        tdRole.textContent = " Active";
+    } else {
+        tdRole.textContent = "Not Active";
+    }
+    tr.append(tdRole);
+
+}
+
+
+fetch("http://localhost/orange-pets/php/controller/getAllCoupon.php", {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+    }
+})
+    .then((response) => response.json())
+    .then((res) => {
+        //TODO: handle user or admin
+        console.log(res);
+        res.forEach(coupon => {
+            generateAllCoupon(coupon);
+        });
+    })
