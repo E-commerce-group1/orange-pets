@@ -335,6 +335,8 @@ addDiscount.onclick = e => {
             if (res == true) {
 
             }
+            window.location.href = '/orange-pets/dash/'
+            
         })
 
 }
@@ -354,7 +356,7 @@ function generateAllCoupon(coupon) {
 
 
     let tdCreateAt = document.createElement('td');
-    tdCreateAt.textContent = coupon.discount_percent;
+    tdCreateAt.textContent = coupon.discount_percent+"%";
     tr.append(tdCreateAt);
 
 
