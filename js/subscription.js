@@ -1,4 +1,5 @@
 let subButton = document.getElementById("sub");
+let loginLink = document.getElementById("loginLink");
 
 let session = JSON.parse(sessionStorage.getItem("user"));
 let userId = session[0].id;
@@ -25,3 +26,5 @@ if (session[0]) {
 } else {
   window.location.href = "/orange-pets/login.html";
 }
+
+
